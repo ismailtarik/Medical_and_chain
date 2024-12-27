@@ -1,0 +1,22 @@
+{
+  "name": "medichain",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "ipfs": "^0.66.1",
+    "ipfs-http-client": "^60.0.1",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.2",
+    "morgan": "~1.9.1",
+    "web3": "^1.2.1"
+  }
+}
