@@ -2,7 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var morgan = require('morgan');  // morgan logger
 var Web3 = require('web3');
 
 // I M P O R T     C O M P I L E D     O U T P U T     O F     M E D I C A L C H A I N     C O N T R A C T     F R O M     B U I L D     D I R E C T O R Y
@@ -21,8 +21,7 @@ console.log("\nC O N T R A C T     A D D R E S S : "+contractAddress+"\n");
 const abi = MyContractJSON.abi;
 
 //  C R E A T I N G     C O N T R A C T     O B J E C T
-MyContract = new web3.eth.Contract(abi,contractAddress);
-
+MyContract = new web3.eth.Contract(abi, contractAddress);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -32,7 +31,6 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 
 const mongoose = require('mongoose');
 
@@ -51,8 +49,18 @@ const connectDB = async () => {
 
 connectDB();
 
+const winston = require('winston');
+// Configuration du logger pour Winston
+const winstonLogger = winston.createLogger({
+  level: 'info',
+  transports: [
+    new winston.transports.File({ filename: 'execution_trace.log' })  // Enregistrer les logs dans un fichier
+  ],
+});
+// Exemple d'enregistrement de logs
+winstonLogger.info('Backend is starting');
 
-app.use(logger('dev'));
+app.use(morgan('dev')); // morgan logger
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

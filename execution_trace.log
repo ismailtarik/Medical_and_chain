@@ -1,0 +1,15 @@
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"DOCTOR LOGIN SUCCESSFUL"}
+{"level":"info","message":"Adding health records to blockchain: 0xd4088e87870083c220287f3267951bab694cc6c8183c9e91c2d8e037bd73b74f"}
+{"level":"info","message":"Health record added successfully in database"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"PATIENT LOGIN SUCCESSFUL"}
+{"level":"info","message":"Retrieved health records for patient: 0x977439ecfa60fA5c85e15a557AfD3302C6132384"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieved health records for patient: 0x977439ecfa60fA5c85e15a557AfD3302C6132384"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"DOCTOR LOGIN SUCCESSFUL"}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x87772368540522D5A08d6A0B0e38c3DCcAaA1607, patient ID: 0x977439ecfa60fA5c85e15a557AfD3302C6132384"}
+{"level":"info","message":"Health records retrieved for doctor: 0x87772368540522D5A08d6A0B0e38c3DCcAaA1607, patient ID: 0x977439ecfa60fA5c85e15a557AfD3302C6132384, Doctor Name: doha"}
+{"level":"info","message":"Retrieving health records history for doctor address: 0x87772368540522D5A08d6A0B0e38c3DCcAaA1607, patient ID: 0x977439ecfa60fA5c85e15a557AfD3302C6132384"}
+{"level":"info","message":"Health records history retrieved for doctor: 0x87772368540522D5A08d6A0B0e38c3DCcAaA1607, patient ID: 0x977439ecfa60fA5c85e15a557AfD3302C6132384"}
