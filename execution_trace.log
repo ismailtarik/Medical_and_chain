@@ -13,3 +13,118 @@
 {"level":"info","message":"Health records retrieved for doctor: 0x87772368540522D5A08d6A0B0e38c3DCcAaA1607, patient ID: 0x977439ecfa60fA5c85e15a557AfD3302C6132384, Doctor Name: doha"}
 {"level":"info","message":"Retrieving health records history for doctor address: 0x87772368540522D5A08d6A0B0e38c3DCcAaA1607, patient ID: 0x977439ecfa60fA5c85e15a557AfD3302C6132384"}
 {"level":"info","message":"Health records history retrieved for doctor: 0x87772368540522D5A08d6A0B0e38c3DCcAaA1607, patient ID: 0x977439ecfa60fA5c85e15a557AfD3302C6132384"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"DOCTOR LOGIN SUCCESSFUL"}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x7FD3f4ff08B2eb105075bf17D88C593d475F41F5, patient ID: 0xE479aD3F50E518c6a4c2D7bc8ffB8DC7B67d65ef"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned values aren't valid, did it run Out of Gas?"}
+{"level":"info","message":"Adding health records to blockchain: 0x15b47b8b6b2d067385135dd2765f52b31c21157e59e9dacda6427b26027442c5"}
+{"level":"error","message":"Failed to add health record to blockchain: Transaction is not defined"}
+{"level":"info","message":"Adding health records to blockchain: 0x6286478460b1eae279024e83f11b08b7c11690ed23e84b2021c9a2e11d8aea9a"}
+{"level":"error","message":"Failed to add health record to blockchain: Transaction is not defined"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Adding health records to blockchain: 0x05d1fc7a3bc2a3890a1a558e3f0ead456566e2c53810f294d29f710be8a2506c"}
+{"level":"error","message":"Failed to add health record to blockchain: Transaction is not defined"}
+{"level":"info","message":"Adding health records to blockchain: 0x811ac17df99bef85f9b8a4edb2fc5bf627aae2fb8af7c70282e4c9faf75313b4"}
+{"level":"error","message":"Failed to add health record to blockchain: Transaction is not defined"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Adding health records to blockchain: 0x7b5578f1d41b003239c0df2ef01db4d02dd7ce6a577c2a0514a1af7468833945"}
+{"level":"info","message":"Transaction saved to MongoDB: 0x7b5578f1d41b003239c0df2ef01db4d02dd7ce6a577c2a0514a1af7468833945"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x7FD3f4ff08B2eb105075bf17D88C593d475F41F5, patient ID: 0xE479aD3F50E518c6a4c2D7bc8ffB8DC7B67d65ef"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned values aren't valid, did it run Out of Gas?"}
+{"level":"info","message":"PATIENT LOGIN SUCCESSFUL"}
+{"level":"error","message":"Error retrieving health records for patient: Returned values aren't valid, did it run Out of Gas?"}
+{"level":"info","message":"ADMIN LOGIN SUCCESSFUL"}
+{"level":"info","message":"Doctor details added successfully in MongoDB: 0xaeb99b0ea5699233a762d61541dd43a5f0175134bc290d6efe2ce7f1f4428f91"}
+{"level":"info","message":"Transaction saved to MongoDB: 0xaeb99b0ea5699233a762d61541dd43a5f0175134bc290d6efe2ce7f1f4428f91"}
+{"level":"info","message":"Doctor found: 0x7FD3f4ff08B2eb105075bf17D88C593d475F41F5"}
+{"level":"info","message":"DOCTOR LOGIN SUCCESSFUL"}
+{"level":"info","message":"Adding health records to blockchain: 0xa0a8f29f81bca4a0a447c4d2c8c573dfadcf966aff643ac6a3838bb6e650e763"}
+{"level":"info","message":"Transaction saved to MongoDB: 0xa0a8f29f81bca4a0a447c4d2c8c573dfadcf966aff643ac6a3838bb6e650e763"}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x7FD3f4ff08B2eb105075bf17D88C593d475F41F5, patient ID: 0xE479aD3F50E518c6a4c2D7bc8ffB8DC7B67d65ef"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned values aren't valid, did it run Out of Gas?"}
+{"level":"info","message":"PATIENT LOGIN SUCCESSFUL"}
+{"level":"error","message":"Error retrieving health records for patient: Returned values aren't valid, did it run Out of Gas?"}
+{"level":"info","message":"Granting access to doctor with DID: 0x7FD3f4ff08B2eb105075bf17D88C593d475F41F5, access: 1, patient address: 0xE479aD3F50E518c6a4c2D7bc8ffB8DC7B67d65ef"}
+{"level":"info","message":"Access granted transaction successful: 0xe47aac872ae001a05ccef1d21d718729e0e3e885075f2971264e12eae0cbd031"}
+{"level":"info","message":"Retrieving health records history for patient address: 0xE479aD3F50E518c6a4c2D7bc8ffB8DC7B67d65ef"}
+{"level":"error","message":"Error retrieving health records: Returned values aren't valid, did it run Out of Gas?"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"ADMIN LOGIN SUCCESSFUL"}
+{"level":"info","message":"Doctor details added successfully in MongoDB: 0xd9a8bb07b8a8a3198dbbac3a9d02c98d38f12d3192af8d2f03bbb4cb4185d9cb"}
+{"level":"info","message":"Transaction saved to MongoDB: 0xd9a8bb07b8a8a3198dbbac3a9d02c98d38f12d3192af8d2f03bbb4cb4185d9cb"}
+{"level":"info","message":"Doctor found: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A"}
+{"level":"info","message":"DOCTOR LOGIN SUCCESSFUL"}
+{"level":"info","message":"Adding health records to blockchain: 0xed5422feb438625d821f87724138806930174007ae270644f7725cfc817a5fee"}
+{"level":"info","message":"Transaction saved to MongoDB: 0xed5422feb438625d821f87724138806930174007ae270644f7725cfc817a5fee"}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert DR ACCESS NOT GRANTED"}
+{"level":"info","message":"PATIENT LOGIN SUCCESSFUL"}
+{"level":"info","message":"Retrieved health records for patient: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"Granting access to doctor with DID: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, access: 1, patient address: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"Access granted transaction successful: 0x834aa6a94fad77417b91dbd53fb970788879418994dde81e75c9fcd9a90dd154"}
+{"level":"info","message":"Retrieving health records history for patient address: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"Health records retrieved for patient: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"DOCTOR LOGIN SUCCESSFUL"}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"Health records retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842, Doctor Name: true"}
+{"level":"info","message":"Retrieving health records history for doctor address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"Health records history retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"error","message":"Error saving transaction to MongoDB: Transaction validation failed: transactionHash: Path `transactionHash` is required., from: Path `from` is required., to: Path `to` is required."}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records history for doctor address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"Health records history retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"error","message":"Error saving transaction to MongoDB: Transaction validation failed: transactionHash: Path `transactionHash` is required., from: Path `from` is required., to: Path `to` is required."}
+{"level":"info","message":"Retrieving health records history for doctor address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"Health records history retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"error","message":"Error saving transaction to MongoDB: Transaction validation failed: transactionHash: Path `transactionHash` is required., from: Path `from` is required., to: Path `to` is required."}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"Health records retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842, Doctor Name: true"}
+{"level":"info","message":"Retrieving health records history for doctor address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"Health records history retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"error","message":"Error saving transaction to MongoDB: Transaction validation failed: transactionHash: Path `transactionHash` is required., from: Path `from` is required., to: Path `to` is required."}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"Health records retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842, Doctor Name: true"}
+{"level":"info","message":"Retrieving health records history for doctor address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"info","message":"Health records history retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0xf16a6f983eB2b4b3A63a9Bf08e5793bEfe776842"}
+{"level":"error","message":"Error saving transaction to MongoDB: Transaction validation failed: transactionHash: Path `transactionHash` is required., from: Path `from` is required., to: Path `to` is required."}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Adding health records to blockchain: 0x2827f004cc5fe39de5e129ffc4c66ac256aa4cc0b473002f518621eea41aef11"}
+{"level":"info","message":"Transaction saved to MongoDB: 0x2827f004cc5fe39de5e129ffc4c66ac256aa4cc0b473002f518621eea41aef11"}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert DR ACCESS NOT GRANTED"}
+{"level":"info","message":"Retrieving health records history for doctor address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"error","message":"Error retrieving health records: Returned error: VM Exception while processing transaction: revert PATIENTS OR ACCESS_GRANTED_DOCTORS ONLY"}
+{"level":"info","message":"PATIENT LOGIN SUCCESSFUL"}
+{"level":"info","message":"Retrieved health records for patient: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"info","message":"Granting access to doctor with DID: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, access: 1, patient address: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"info","message":"Access granted transaction successful: 0x85bf23dffaa8f7bbca65a56ff22556987a4d44e80202829d4ac78993057c1432"}
+{"level":"info","message":"Retrieving health records history for patient address: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"info","message":"Health records retrieved for patient: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"info","message":"DOCTOR LOGIN SUCCESSFUL"}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"info","message":"Health records retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9, Doctor Name: true"}
+{"level":"info","message":"Retrieving health records history for doctor address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"info","message":"Health records history retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"error","message":"Error saving transaction to MongoDB: Transaction validation failed: transactionHash: Path `transactionHash` is required., from: Path `from` is required., to: Path `to` is required."}
+{"level":"info","message":"Retrieving health records history for doctor address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"info","message":"Health records history retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"error","message":"Error saving transaction to MongoDB: Transaction validation failed: transactionHash: Path `transactionHash` is required., from: Path `from` is required., to: Path `to` is required."}
+{"level":"info","message":"DOCTOR LOGIN SUCCESSFUL"}
+{"level":"info","message":"Retrieving health records history for doctor address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A"}
+{"level":"error","message":"Error retrieving health records: Returned error: VM Exception while processing transaction: revert PATIENTS OR ACCESS_GRANTED_DOCTORS ONLY"}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"info","message":"Health records retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9, Doctor Name: true"}
+{"level":"info","message":"Retrieving health records history for doctor address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"info","message":"Health records history retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"error","message":"Error saving transaction to MongoDB: Transaction validation failed: transactionHash: Path `transactionHash` is required., from: Path `from` is required., to: Path `to` is required."}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records for doctor with address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
+{"level":"info","message":"Health records retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9, Doctor Name: true"}

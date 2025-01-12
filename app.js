@@ -37,7 +37,7 @@ const mongoose = require('mongoose');
 // Connect to MongoDB
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/medical', {
+        await mongoose.connect('mongodb://localhost:27017/medical_chain', {
             useNewUrlParser: true, // Toujours requis
         });
         console.log('MongoDB Connected...');

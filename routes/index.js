@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const winston = require('winston');  // Importation de winston
 const Doctor = require('../models/doctor');
-const HealthRecord = require('../models/healthRecords');
+const Transaction = require('../models/Transaction');
 
 // Configuration du logger
 const logger = winston.createLogger({
@@ -106,7 +106,6 @@ router.post('/getDrRecords', (req, res) => {
     });
 });
 
-// Add health records
 // Ajouter des enregistrements de santé
 router.post('/setHealthRecords', (req, res) => {
   const { patient_name, patient_address, inscription, doctor_address } = req.body;
@@ -131,7 +130,7 @@ router.post('/setHealthRecords', (req, res) => {
           logger.info(`Transaction saved to MongoDB: ${txn.transactionHash}`);
           res.json({
             done: 1,
-            message: 'Health record added successfully to blockchain and transaction saved to database',
+            message: 'Health record added successfully to blockchain',
             transactionHash: txn.transactionHash
           });
         })
@@ -222,41 +221,19 @@ router.post('/getHealthRecordsHistoryForPatients', (req, res) => {
     });
 });
 
-// Retrieve health records history for doctor
-router.post('/getHealthRecordsHistory', (req, res) => {
-  const { pid, d_adrs } = req.body;
 
-  logger.info(`Retrieving health records history for doctor address: ${d_adrs}, patient ID: ${pid}`);
-
-  MyContract.methods.getPatientDetails(pid).call({ from: d_adrs })
-    .then(result1 => {
-      // Log transaction info after blockchain interaction
-      logger.info(`Health records history retrieved for doctor: ${d_adrs}, patient ID: ${pid}`);
-
-      // Create a new transaction object for MongoDB
-      const newTransaction = new Transaction({
-        transactionHash: result1.transactionHash,  // Adjust based on actual result structure
-        from: result1.from,
-        to: result1.to,
-        value: result1.value,  // Adjust this if necessary
-      });
-
-      // Save the transaction to MongoDB
-      newTransaction.save()
-        .then(() => {
-          res.send({ done: 1, result: result1 });
-        })
-        .catch(err => {
-          logger.error(`Error saving transaction to MongoDB: ${err.message}`);
-          res.status(500).json({ done: 0, message: 'Failed to save transaction to MongoDB', error: err.message });
-        });
-    })
-    .catch(err => {
-      logger.error(`Error retrieving health records: ${err.message}`);
-      res.send(err);
-    });
+// R E T R E I V E     H E A L T H     R E C O R D S     H I S T O R Y     F O R     D O C T O R
+router.post('/getHealthRecordsHistory', function (req, res, next) {
+  let data = req.body; //only use GET for query
+  MyContract.methods.getPatientDetails(data.pid).call({ from: data.d_adrs }).then((result1) => {
+    console.log("\n\nR E T R E I V I N G     H E A L T H R E C O R D S     H I S T O R Y     F O R     P A T I E N T : " + result1._paName + "\n\n");
+    console.log(result1);
+    res.send({ done: 1, result: result1 });
+  }).catch(err => {
+    console.log("\n\nA C C E S S     D E N I E D\n\n");
+    res.send(err);
+  })
 });
-
 
 // Retrieve health records for doctor
 router.post('/getHealthRecords', function (req, res, next) {
@@ -288,6 +265,7 @@ router.get('/transactions', (req, res) => {
       res.status(500).json({ done: 0, message: 'Failed to retrieve transactions', error: err.message });
     });
 });
+
 
 
 module.exports = router;
