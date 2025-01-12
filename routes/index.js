@@ -43,15 +43,46 @@ router.post('/patients_reg', (req, res) => {
 router.post('/setDrRecords', (req, res) => {
   const { d_state, d_adrs, d_name, admin_adrs } = req.body;
 
+  // Créer un nouvel objet Doctor pour MongoDB
   const newDoctor = new Doctor({ state: d_state, address: d_adrs, name: d_name, admin_address: admin_adrs });
+
+  // Enregistrer dans MongoDB
   newDoctor.save()
     .then(() => {
-      logger.info('Doctor details added successfully in the database');  // Utilisation du logger
-      res.json({ done: 1, message: 'Doctor details added successfully in the database' });
+      // Une fois enregistré dans MongoDB, ajouter les informations sur la blockchain
+      MyContract.methods.setDoctorDetails(d_name, d_adrs, d_state)
+        .send({ from: admin_adrs, gas: 6283185 })
+        .then(txn => {
+          // Log transaction info after blockchain interaction
+          logger.info(`Doctor details added successfully in MongoDB: ${txn.transactionHash}`);  // Utilisation du logger
+
+          // Créer un nouvel objet de transaction pour MongoDB
+          const newTransaction = new Transaction({
+            transactionHash: txn.transactionHash,
+            from: txn.from,
+            to: txn.to,
+            value: txn.value, // Adaptez cela si nécessaire en fonction de la structure de la transaction
+          });
+
+          // Enregistrer la transaction dans MongoDB
+          newTransaction.save()
+            .then(() => {
+              logger.info(`Transaction saved to MongoDB: ${txn.transactionHash}`);
+              res.json({ done: 1, message: 'Doctor details added successfully in the database', transactionHash: txn.transactionHash });
+            })
+            .catch(err => {
+              logger.error(`Error saving transaction to MongoDB: ${err.message}`); // Utilisation du logger
+              res.status(500).json({ done: 0, message: 'Failed to save transaction to MongoDB', error: err.message });
+            });
+        })
+        .catch(err => {
+          logger.error(`Error adding doctor to blockchain: ${err.message}`);  // Utilisation du logger
+          res.status(500).json({ done: 0, message: 'Failed to add doctor to blockchain', error: err.message });
+        });
     })
     .catch(err => {
-      logger.error(`Error adding doctor: ${err.message}`);  // Utilisation du logger
-      res.status(500).json({ done: 0, message: 'Failed to add doctor', error: err.message });
+      logger.error(`Error adding doctor to database: ${err.message}`);  // Utilisation du logger
+      res.status(500).json({ done: 0, message: 'Failed to add doctor to database', error: err.message });
     });
 });
 
@@ -76,24 +107,50 @@ router.post('/getDrRecords', (req, res) => {
 });
 
 // Add health records
+// Ajouter des enregistrements de santé
 router.post('/setHealthRecords', (req, res) => {
   const { patient_name, patient_address, inscription, doctor_address } = req.body;
 
+  // Effectuer la transaction sur la blockchain
   MyContract.methods.setHealthRecordsDetails(patient_name, patient_address, inscription)
     .send({ from: doctor_address, gas: 6283185 })
     .then(txn => {
       logger.info(`Adding health records to blockchain: ${txn.transactionHash}`);  // Utilisation du logger
 
-      const newHealthRecord = new HealthRecord({ patient_name, patient_address, inscription, doctor_address });
-      return newHealthRecord.save();
-    })
-    .then(() => {
-      logger.info('Health record added successfully in database');  // Utilisation du logger
-      res.json({ done: 1, message: 'Health record added successfully in database' });
+      // Créer un nouvel objet de transaction pour MongoDB
+      const newTransaction = new Transaction({
+        transactionHash: txn.transactionHash,
+        from: txn.from,
+        to: txn.to,
+        value: txn.value, // Adaptez cela si nécessaire en fonction de la structure de la transaction
+      });
+
+      // Enregistrer la transaction dans MongoDB
+      newTransaction.save()
+        .then(() => {
+          logger.info(`Transaction saved to MongoDB: ${txn.transactionHash}`);
+          res.json({
+            done: 1,
+            message: 'Health record added successfully to blockchain and transaction saved to database',
+            transactionHash: txn.transactionHash
+          });
+        })
+        .catch(err => {
+          logger.error(`Error saving transaction to MongoDB: ${err.message}`); // Utilisation du logger
+          res.status(500).json({
+            done: 0,
+            message: 'Failed to save transaction to MongoDB',
+            error: err.message
+          });
+        });
     })
     .catch(err => {
-      logger.error(`Failed to add health record: ${err.message}`);  // Utilisation du logger
-      res.status(500).json({ done: 0, message: 'Failed to add health record', error: err.message });
+      logger.error(`Failed to add health record to blockchain: ${err.message}`); // Utilisation du logger
+      res.status(500).json({
+        done: 0,
+        message: 'Failed to add health record to blockchain',
+        error: err.message
+      });
     });
 });
 
@@ -112,6 +169,7 @@ router.post('/getHealthRecordsForPatients', (req, res) => {
     });
 });
 
+
 // Grant access to doctor
 router.post('/grantAccessToDoctor', (req, res) => {
   const { did, access, p_adrs } = req.body;
@@ -120,8 +178,26 @@ router.post('/grantAccessToDoctor', (req, res) => {
 
   MyContract.methods.grantAccessToDoctor(did, access).send({ from: p_adrs, gas: 6283185 })
     .then(txn => {
+      // Log transaction info after blockchain interaction
       logger.info(`Access granted transaction successful: ${txn.transactionHash}`);
-      res.send({ done: 1, message: "ACCESS GRANTED" });
+
+      // Create a new transaction object for MongoDB
+      const newTransaction = new Transaction({
+        transactionHash: txn.transactionHash,
+        from: txn.from,
+        to: txn.to,
+        value: txn.value, // Adjust this depending on the structure of the transaction
+      });
+
+      // Save the transaction to MongoDB
+      newTransaction.save()
+        .then(() => {
+          res.send({ done: 1, message: "ACCESS GRANTED", transactionHash: txn.transactionHash });
+        })
+        .catch(err => {
+          logger.error(`Error saving transaction to MongoDB: ${err.message}`);
+          res.status(500).json({ done: 0, message: 'Failed to save transaction to MongoDB', error: err.message });
+        });
     })
     .catch(err => {
       logger.error(`Error granting access: ${err.message}`);
@@ -154,14 +230,33 @@ router.post('/getHealthRecordsHistory', (req, res) => {
 
   MyContract.methods.getPatientDetails(pid).call({ from: d_adrs })
     .then(result1 => {
+      // Log transaction info after blockchain interaction
       logger.info(`Health records history retrieved for doctor: ${d_adrs}, patient ID: ${pid}`);
-      res.send({ done: 1, result: result1 });
+
+      // Create a new transaction object for MongoDB
+      const newTransaction = new Transaction({
+        transactionHash: result1.transactionHash,  // Adjust based on actual result structure
+        from: result1.from,
+        to: result1.to,
+        value: result1.value,  // Adjust this if necessary
+      });
+
+      // Save the transaction to MongoDB
+      newTransaction.save()
+        .then(() => {
+          res.send({ done: 1, result: result1 });
+        })
+        .catch(err => {
+          logger.error(`Error saving transaction to MongoDB: ${err.message}`);
+          res.status(500).json({ done: 0, message: 'Failed to save transaction to MongoDB', error: err.message });
+        });
     })
     .catch(err => {
-      logger.error(`Error retrieving health records for doctor: ${err.message}`);
+      logger.error(`Error retrieving health records: ${err.message}`);
       res.send(err);
     });
 });
+
 
 // Retrieve health records for doctor
 router.post('/getHealthRecords', function (req, res, next) {
@@ -177,6 +272,20 @@ router.post('/getHealthRecords', function (req, res, next) {
     .catch(err => {
       logger.error(`Access denied or error retrieving health records: ${err.message}`);
       res.send(err);
+    });
+});
+
+
+// Afficher toutes les transactions
+router.get('/transactions', (req, res) => {
+  Transaction.find()
+    .sort({ timestamp: -1 }) // Tri par date décroissante
+    .then(transactions => {
+      // Passer les transactions à la vue EJS
+      res.render('transactions', { transactions: transactions });
+    })
+    .catch(err => {
+      res.status(500).json({ done: 0, message: 'Failed to retrieve transactions', error: err.message });
     });
 });
 

@@ -20,6 +20,10 @@ function admin_portal(event){
     window.location.href='/admin_reg';
 }
 
+function transactions_portal(event) {
+    // Redirige l'utilisateur vers la page des transactions
+    window.location.href = '/transactions'; // Remplacez '/transactions' par le chemin réel si nécessaire
+}
 
 
 // F U N C T I O N     T O     A D D     D O C T O R     I N F O 
