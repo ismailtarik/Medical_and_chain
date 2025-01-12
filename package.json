@@ -6,11 +6,16 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@metamask/eth-sig-util": "^8.1.2",
+    "@truffle/hdwallet-provider": "^2.1.15",
     "body-parser": "^1.20.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.4.7",
     "ejs": "~2.6.1",
+    "eth-block-tracker": "^8.1.0",
+    "ethereumjs-util": "^7.1.5",
+    "ethers": "^6.13.5",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "ipfs": "^0.66.1",

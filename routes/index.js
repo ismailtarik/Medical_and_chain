@@ -3,6 +3,7 @@ var router = express.Router();
 const winston = require('winston');  // Importation de winston
 const Doctor = require('../models/doctor');
 const Transaction = require('../models/Transaction');
+const { recoverPersonalSignature } = require('@metamask/eth-sig-util');
 
 // Configuration du logger
 const logger = winston.createLogger({
@@ -20,91 +21,110 @@ router.get('/addHealthRecords', (req, res) => res.render('addHealthRecords'));
 router.get('/patient_access', (req, res) => res.render('patient_access'));
 router.get('/setDrRecords', (req, res) => res.render('addDrRecords'));
 
-// Routes for signing in
-router.post('/admin_reg', (req, res) => {
-  const { a_adrs: admin, a_pswd: pswd } = req.body;
-  logger.info("ADMIN LOGIN SUCCESSFUL");  // Utilisation du logger
-  res.send({ done: 1, adrs: admin, message: "ADMIN LOGIN SUCCESSFUL" });
+// S I G N I N G     W I T H     A D M I N     I N F O
+router.post('/admin_reg', function (req, res, next) {
+  var admin = req.body.a_adrs;
+  console.log("\n\nA D M I N     L O G I N     S U C C E S S F U L L\n\n");
+  res.send({ done: 1, adrs: admin, message: "ADMIN LOGIN SUCCESSFULL" });
+})
+
+
+// S I G N I N G     W I T H     D O C T O R     I N F O
+router.post('/doctor_reg', function (req, res, next) {
+  var doctor = req.body.d_adrs;
+  console.log("\n\nD O C T O R     L O G I N     S U C C E S S F U L L\n\n");
+  res.send({ done: 1, dadrs: doctor, message: "DOCTOR LOGIN SUCCESSFULL" });
 });
 
-router.post('/doctor_reg', (req, res) => {
-  const { d_adrs: doctor, a_pswd: pswd } = req.body;
-  logger.info("DOCTOR LOGIN SUCCESSFUL");  // Utilisation du logger
-  res.send({ done: 1, dadrs: doctor, message: "DOCTOR LOGIN SUCCESSFUL" });
+
+
+// S I G N I N G     W I T H     P A T I E N T     I N F O
+router.post('/patients_reg', function (req, res, next) {
+  var patient = req.body.p_adrs;
+  console.log("\n\nP A T I E N T     L O G I N     S U C C E S S F U L L\n\n");
+  res.send({ done: 1, padrs: patient, message: "PATIENT LOGIN SUCCESSFULL" });
 });
 
-router.post('/patients_reg', (req, res) => {
-  const { p_adrs: patient, p_pswd: pswd } = req.body;
-  logger.info("PATIENT LOGIN SUCCESSFUL");  // Utilisation du logger
-  res.send({ done: 1, padrs: patient, message: "PATIENT LOGIN SUCCESSFUL" });
-});
 
-// Add doctor records
-router.post('/setDrRecords', (req, res) => {
-  const { d_state, d_adrs, d_name, admin_adrs } = req.body;
+// Ajouter doctor
+router.post('/setDrRecords', async (req, res) => {
+  const { d_state: state, d_adrs: adrs, d_name: name, admin_adrs: admin } = req.body;
 
-  // Créer un nouvel objet Doctor pour MongoDB
-  const newDoctor = new Doctor({ state: d_state, address: d_adrs, name: d_name, admin_address: admin_adrs });
+  try {
+    const accList = await web3.eth.getAccounts();
+    if (accList.length === 0) {
+      return res.status(400).json({ done: 0, message: 'No accounts found in Web3' });
+    }
 
-  // Enregistrer dans MongoDB
-  newDoctor.save()
-    .then(() => {
-      // Une fois enregistré dans MongoDB, ajouter les informations sur la blockchain
-      MyContract.methods.setDoctorDetails(d_name, d_adrs, d_state)
-        .send({ from: admin_adrs, gas: 6283185 })
-        .then(txn => {
-          // Log transaction info after blockchain interaction
-          logger.info(`Doctor details added successfully in MongoDB: ${txn.transactionHash}`);  // Utilisation du logger
+    const senderAddress = admin || accList[0];
+    console.log("Using sender address:", senderAddress);
 
-          // Créer un nouvel objet de transaction pour MongoDB
-          const newTransaction = new Transaction({
-            transactionHash: txn.transactionHash,
-            from: txn.from,
-            to: txn.to,
-            value: txn.value, // Adaptez cela si nécessaire en fonction de la structure de la transaction
-          });
+    const txn = await MyContract.methods.setDoctorDetails(state, adrs, name)
+      .send({ from: senderAddress, gas: 6283185 });
 
-          // Enregistrer la transaction dans MongoDB
-          newTransaction.save()
-            .then(() => {
-              logger.info(`Transaction saved to MongoDB: ${txn.transactionHash}`);
-              res.json({ done: 1, message: 'Doctor details added successfully in the database', transactionHash: txn.transactionHash });
-            })
-            .catch(err => {
-              logger.error(`Error saving transaction to MongoDB: ${err.message}`); // Utilisation du logger
-              res.status(500).json({ done: 0, message: 'Failed to save transaction to MongoDB', error: err.message });
-            });
-        })
-        .catch(err => {
-          logger.error(`Error adding doctor to blockchain: ${err.message}`);  // Utilisation du logger
-          res.status(500).json({ done: 0, message: 'Failed to add doctor to blockchain', error: err.message });
-        });
-    })
-    .catch(err => {
-      logger.error(`Error adding doctor to database: ${err.message}`);  // Utilisation du logger
-      res.status(500).json({ done: 0, message: 'Failed to add doctor to database', error: err.message });
+    console.log("Transaction successful:", txn.transactionHash);
+
+    // Save transaction
+    const newTransaction = new Transaction({
+      transactionHash: txn.transactionHash,
+      from: txn.from,
+      to: txn.to,
+      value: txn.value,
     });
+    await newTransaction.save();
+
+    // Save doctor details
+    const newDoctor = new Doctor({
+      state: state,
+      address: adrs,
+      name: name,
+      admin_address: senderAddress,
+    });
+    const savedDoctor = await newDoctor.save();
+
+    res.json({
+      done: 1,
+      message: "Doctor details added and transaction saved to database",
+      doctor: savedDoctor,
+      transactionHash: txn.transactionHash,
+    });
+  } catch (err) {
+    console.error("Error:", err.message);
+    res.status(500).json({
+      done: 0,
+      message: 'An error occurred while processing the request',
+      error: err.message,
+    });
+  }
 });
 
-// Retrieve doctor records
+// Retrieve doctor records based on address
 router.post('/getDrRecords', (req, res) => {
   const { d_adrs: dr } = req.body;
 
+  // Validate input
+  if (!dr) {
+    logger.warn("Doctor address not provided in request");  // Log missing input
+    return res.status(400).json({ done: 0, message: 'Doctor address is required' });
+  }
+
+  // Search for doctor in MongoDB
   Doctor.findOne({ address: dr })
     .then(doctor => {
       if (doctor) {
-        logger.info(`Doctor found: ${dr}`);  // Utilisation du logger
-        res.json({ done: 1, result: doctor });
+        logger.info(`Doctor found for address: ${dr}`);  // Log success
+        res.status(200).json({ done: 1, result: doctor });
       } else {
-        logger.warn(`Doctor not found: ${dr}`);  // Utilisation du logger
-        res.json({ done: 0, message: 'Doctor not found in the database' });
+        logger.warn(`No doctor found for address: ${dr}`);  // Log not found
+        res.status(404).json({ done: 0, message: 'Doctor not found with the given address' });
       }
     })
     .catch(err => {
-      logger.error(`Error retrieving doctor record: ${err.message}`);  // Utilisation du logger
-      res.json({ done: 0, message: 'Error while retrieving doctor record', error: err });
+      logger.error(`Error retrieving doctor record: ${err.message}`);  // Log error
+      res.status(500).json({ done: 0, message: 'Error while retrieving doctor record', error: err.message });
     });
 });
+
 
 // Ajouter des enregistrements de santé
 router.post('/setHealthRecords', (req, res) => {
@@ -266,6 +286,65 @@ router.get('/transactions', (req, res) => {
     });
 });
 
+
+
+
+// Middleware to generate nonce
+let nonces = {}; // In-memory store for demonstration; replace with a database in production
+
+router.get('/get_nonce/:address', (req, res) => {
+  const address = req.params.address;
+  if (!address) {
+    return res.status(400).json({ message: "Invalid address" });
+  }
+  const nonce = `Login request: ${Math.floor(Math.random() * 1000000)}`;
+  nonces[address] = nonce;
+  res.json({ nonce });
+});
+
+// MetaMask login route with nonce validation
+router.post('/metamask_login', async (req, res) => {
+  const { address, signature, role } = req.body;
+  const nonce = nonces[address];
+
+  if (!nonce) {
+    return res.status(400).json({ success: false, message: "Nonce missing or expired" });
+  }
+
+  try {
+    const msgHex = `0x${Buffer.from(nonce, 'utf8').toString('hex')}`;
+    const recoveredAddress = recoverPersonalSignature({
+      data: msgHex,
+      signature: signature,
+    });
+
+    if (recoveredAddress.toLowerCase() === address.toLowerCase()) {
+      delete nonces[address]; // Invalidate the nonce after successful login
+
+      const redirectUrl = getRedirectUrl(role);
+      return res.json({ success: true, role, redirectUrl, address });
+    } else {
+      return res.status(401).json({ success: false, message: "Invalid signature" });
+    }
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+
+// Helper function to determine redirect URL based on role
+function getRedirectUrl(role) {
+  switch (role) {
+    case 'admin':
+      return '/setDrRecords';
+    case 'dr':
+      return '/addHealthRecords';
+    case 'patient':
+      return '/patient_access';
+    default:
+      return '/'; // Default landing page
+  }
+}
 
 
 module.exports = router;

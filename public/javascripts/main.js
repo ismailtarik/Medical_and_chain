@@ -173,83 +173,53 @@ function getHealthRecordsForPatients(event){
 }
 
 
-
 // F U N C T I O N     T O     L O G I N     A S     A D M I N
-function admin_login(event){
-    event.preventDefault();
-    console.log("s.agnsfmskdgjdskhmgjdslkgmsdkgsmgk");
-    var admin = document.getElementById('admin_user').value;
-    var pswd = document.getElementById('admin_pswd').value;
-    if(admin.length !== 42 || pswd !== '123'){
-        alert("ENTER CORRECT USERNAME & PASSWORD");
-    }
-    else{ 
-        $.post('/admin_reg',{a_adrs: admin,a_pswd: pswd},(data, textStatus, jqXHR)=>{
-         if(data.done == 1){
+function admin_login(address) {
+    $.post('/admin_reg', { a_adrs: address }, (data, textStatus, jqXHR) => {
+        if (data.done == 1) {
             sessionStorage.clear();
-            sessionStorage.setItem("admin_adrs",data.adrs);
-            window.location.href='/setDrRecords';
+            sessionStorage.setItem("admin_adrs", data.adrs);
+            window.location.href = '/setDrRecords';
         }
-        else{
-            window.location.href='/';
+        else {
+            window.location.href = '/';
         }
-        }, 'json');
-    }
-
+    });
 }
 
 
-
 // F U N C T I O N     T O     L O G I N     A S     D O C T O R
-function doctor_login(event){
-    event.preventDefault();
-    var doctor = document.getElementById('dr_user').value;
-    var pswd = document.getElementById('dr_pswd').value;
-    if(doctor.length !== 42 || pswd !== '123'){
-        alert("ENTER CORRECT USERNAME & PASSWORD");
-    }
-    else{ 
-        $.post('/doctor_reg',{d_adrs: doctor,d_pswd: pswd},(data, textStatus, jqXHR)=>{
-         if(data.done == 1){
-            sessionStorage.clear();
-            sessionStorage.setItem("doctor_adrs",data.dadrs);
-            alert(data.message);
-            window.location.href='/addHealthRecords';
-        }
-        else{
-            window.location.href='/';
-        }
-        }, 'json');
-    }
+function doctor_login(doctor) {
 
+    $.post('/doctor_reg', { d_adrs: doctor, }, (data, textStatus, jqXHR) => {
+        if (data.done == 1) {
+            sessionStorage.clear();
+            sessionStorage.setItem("doctor_adrs", data.dadrs);
+            alert(data.message);
+            window.location.href = '/addHealthRecords';
+        }
+        else {
+            window.location.href = '/';
+        }
+    }, 'json');
 }
 
 
 
 // F U N C T I O N     T O     L O G I N     A S     P A T I E N T
-function patient_login(event){
-    event.preventDefault();
-    var patient = document.getElementById('patient_user').value;
-    var pswd = document.getElementById('patient_pswd').value;
-    if(patient.length !== 42 || pswd !== '123'){
-        alert("ENTER CORRECT USERNAME & PASSWORD");
-    }
-    else{ 
-        $.post('/patients_reg',{p_adrs: patient,p_pswd: pswd},(data, textStatus, jqXHR)=>{
-         if(data.done == 1){
+function patient_login(patient) {
+    $.post('/patients_reg', { p_adrs: patient }, (data, textStatus, jqXHR) => {
+        if (data.done == 1) {
             sessionStorage.clear();
-            sessionStorage.setItem("patient_adrs",data.padrs);
+            sessionStorage.setItem("patient_adrs", data.padrs);
             alert(data.message);
-            window.location.href='/patient_access';
+            window.location.href = '/patient_access';
         }
-        else{
-            window.location.href='/';
+        else {
+            window.location.href = '/';
         }
-        }, 'json');
-    }
-
+    }, 'json');
 }
-
 
 
 // F U N C T I O N     T O     G R A N T     A C C E S S     T O     D O C T O R S 

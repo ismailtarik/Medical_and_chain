@@ -128,3 +128,55 @@
 {"level":"info","message":"Backend is starting"}
 {"level":"info","message":"Retrieving health records for doctor with address: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9"}
 {"level":"info","message":"Health records retrieved for doctor: 0x75ddB855d54870c7ebB6B0B2915aFC04Eb91129A, patient ID: 0x39D46948361f791fa117835E1a394EEC5a89D4D9, Doctor Name: true"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"error","message":"Error adding doctor to blockchain: No \"from\" address specified in neither the given options, nor the default options."}
+{"level":"info","message":"Backend is starting"}
+{"level":"error","message":"Missing required fields in request body."}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"error","message":"Missing required fields in request body."}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"error","message":"Error adding doctor to blockchain: No \"from\" address specified in neither the given options, nor the default options."}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Doctor found: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5"}
+{"level":"info","message":"Doctor found: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"warn","message":"Doctor not found: 0x35C5F8864dE4B988432bA3beF7c26A85e7c0B238"}
+{"level":"warn","message":"Doctor not found: 0x35C5F8864dE4B988432bA3beF7c26A85e7c0B238"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"warn","message":"Doctor not found: 0x585f89394055f25Cc93B7c746A1f4aC6231946Fa"}
+{"level":"warn","message":"Doctor not found: 0x585f89394055f25Cc93B7c746A1f4aC6231946Fa"}
+{"level":"info","message":"Backend is starting"}
+{"level":"warn","message":"Doctor not found for address: 0x585f89394055f25Cc93B7c746A1f4aC6231946Fa"}
+{"level":"warn","message":"Doctor not found for address: 0x585f89394055f25Cc93B7c746A1f4aC6231946Fa"}
+{"level":"warn","message":"Doctor not found for address: 0x585f89394055f25Cc93B7c746A1f4aC6231946Fa"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Doctor found for address: 0x585f89394055f25Cc93B7c746A1f4aC6231946Fa"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}

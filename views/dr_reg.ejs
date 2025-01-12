@@ -1,58 +1,156 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel='stylesheet' href='/stylesheets/index.css' />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-        <script src='/javascripts/main.js'></script>
-    </head>
-    <body class="b1">
-        <br><br>
-        <h1 class="f1" style="margin-top: -1em">Medic@Chain</h1>
-        <button style="padding-inline: 18px;" onclick="admin_portal(event)" class="btn btn-danger"> A D M I N </button><br><br>
-        <button style="padding-inline: 18px;" onclick="doctor_portal(event)" class="btn btn-danger"> D O C T O R </button><br><br>
-        <button style="padding-inline: 18px;" onclick="patient_portal(event)" class="btn btn-danger"> P A T I E N T S </button><br><br>
-        <button style="padding-inline: 18px;" onclick="transactions_portal(event)" class="btn btn-primary"> T R A N S A C T I O N S </button><br><br>
-        <img src="../images/dr.png"  class="mx-auto d-block" style="width: 33%;height: 100%;margin-top: -186px;margin-bottom: -33px;"> 
-        <div class="form-modal">
-            <div class="form-toggle">
-                <button id="ben" onclick="toggleEd()"> D O C T O R </button>
-            </div>
-          
-            <div id="ed-form">
-              <form>
-                <input type="text" id="dr_user" placeholder=" U S E R   N A M E" required/>
-                <input type="text" id="dr_pswd" placeholder=" P A S S W O R D " required/>
-                <button type="submit" onclick="doctor_login(event)" class="btn login"> L O G I N </button>        
-            </form>  
-            </div>
+
+<head>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src='/javascripts/main.js'></script>
+</head>
+
+<body class="b1">
+    <br><br>
+    <h1 class="f1" style="margin-top: -1em">Medic@Chain</h1>
+    <button style="padding-inline: 18px;" onclick="admin_portal(event)" class="btn btn-danger"> A D M I N
+    </button><br><br>
+    <button style="padding-inline: 18px;" onclick="doctor_portal(event)" class="btn btn-danger"> D O C T O R
+    </button><br><br>
+    <button style="padding-inline: 18px;" onclick="patient_portal(event)" class="btn btn-danger"> P A T I E N T S
+    </button><br><br>
+    <button style="padding-inline: 18px;" onclick="transactions_portal(event)" class="btn btn-primary"> T R A N S A C T I O N S </button><br><br>
+    <img src="../images/dr.png" class="mx-auto d-block"
+        style="width: 33%;height: 100%;margin-top: -186px;margin-bottom: -33px;">
+    <div class="form-modal">
+        <div class="form-toggle">
+            <button id="ben" onclick="toggleEd()"> D O C T O R </button>
         </div>
 
+        <div id="ed-form">
+            <form>
+                <button type="button" onclick="connectWithMetaMask()" class="btn">Connect with
+                    MetaMask</button>
+            </form>
+        </div>
+    </div>
+    <iframe
+    allow="microphone;"
+    width="450"
+    height="600"
+    src="https://console.dialogflow.com/api-client/demo/embedded/452d0ece-d279-429e-9c02-1fe44ee82134">
+</iframe>
 
-            <script>
-                function toggleSt() {
-                    document.getElementById("ed-toggle").style.backgroundColor = "#fff";
-                    document.getElementById("ed-toggle").style.color = "#222";
-                    document.getElementById("st-toggle").style.backgroundColor = "#33cc99";
-                    document.getElementById("st-toggle").style.color = "#fff";
-                    document.getElementById("ed-form").style.display = "none";
-                    document.getElementById("st-form").style.display = "block";
+    <script>
+        async function connectWithMetaMask() {
+            if (window.ethereum) {
+                try {
+                    //specify the role 
+                    let role = "dr";
+                    // Request account access
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    console.log("User's MetaMask accounts:", accounts);
+
+                    const address = accounts[0];
+                    console.log("User's selected address:", address);
+
+                    // Message to be signed (no nonce needed in this simplified version)
+                    const message = `Please sign this message to log in to Medichain.`;
+                    console.log("Message to be signed:", message);
+
+                    // Request signature
+                    const signature = await ethereum.request({
+                        method: 'personal_sign',
+                        params: [message, address],
+                    });
+                    console.log("Signature received:", signature);
+
+                    // Send data to backend (no nonce needed)
+                    $.ajax({
+                        url: '/metamask_login',
+                        type: 'POST',
+                        data: { address, signature,role }, // No nonce sent
+                        success: function (data) {
+                            console.log("Backend response:", data);
+
+                            if (data.success) {
+                                doctor_login(address)
+                                sessionStorage.setItem('userAddress', address); // Consider removing this if you're not using sessions
+                                sessionStorage.setItem('userRole', data.role);  // Consider removing this if you're not using sessions
+
+                                console.log("Redirecting to:", data.redirectUrl);
+                                window.location.href = data.redirectUrl; // Redirect based on role
+                            } else {
+                                alert('Login failed: ' + data.message);
+                                return false; // Return false if there was an error
+                            }
+                            return true; // Return false if there was an error
+                        },
+                        error: function (err) {
+                            console.error("AJAX request error:", err);
+                            alert('Login request failed. Please try again.');
+                        },
+
+                    });
+                } catch (error) {
+                    console.error("MetaMask error:", error);
+                    alert('MetaMask connection failed.');
+                    return false; // Return false if there was an error
                 }
+            } else {
+                alert('Please install MetaMask.');
+                return false; // Return false if there was an error
+            }
+        }
 
-                function toggleEd() {
-                    document.getElementById("ed-toggle").style.backgroundColor = "#33cc99";
-                    document.getElementById("ed-toggle").style.color = "#fff";
-                    document.getElementById("st-toggle").style.backgroundColor = "#fff";
-                    document.getElementById("st-toggle").style.color = "#222";
-                    document.getElementById("st-form").style.display = "none";
-                    document.getElementById("ed-form").style.display = "block";
+        // F U N C T I O N     T O     L O G I N     A S     A D M I N
+        function admin_login(doctor) {
+            console.log('====================================');
+            console.log("admin log function");
+            console.log("Adrees login",doctor);
+            console.log('====================================');
+            $.post('/admin_reg', { a_adrs: admin}, (data, textStatus, jqXHR) => {
+                if (data.done == 1) {
+                    sessionStorage.clear();
+                    sessionStorage.setItem("admin_adrs", data.adrs);
+                    window.location.href = '/setDrRecords';
                 }
+                
+                else {
+                    window.location.href = '/';
+                }
+            });
+        }
 
-            </script>
-            <script src='/javascripts/main.js'></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-        
-    </body>
+        function toggleSt() {
+            document.getElementById("ed-toggle").style.backgroundColor = "#fff";
+            document.getElementById("ed-toggle").style.color = "#222";
+            document.getElementById("st-toggle").style.backgroundColor = "#33cc99";
+            document.getElementById("st-toggle").style.color = "#fff";
+            document.getElementById("ed-form").style.display = "none";
+            document.getElementById("st-form").style.display = "block";
+        }
+
+        function toggleEd() {
+            document.getElementById("ed-toggle").style.backgroundColor = "#33cc99";
+            document.getElementById("ed-toggle").style.color = "#fff";
+            document.getElementById("st-toggle").style.backgroundColor = "#fff";
+            document.getElementById("st-toggle").style.color = "#222";
+            document.getElementById("st-form").style.display = "none";
+            document.getElementById("ed-form").style.display = "block";
+        }
+
+    </script>
+    <script src='/javascripts/main.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+
+</body>
+
 </html>
