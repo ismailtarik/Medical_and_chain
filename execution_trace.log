@@ -180,3 +180,191 @@
 {"level":"info","message":"Backend is starting"}
 {"level":"info","message":"Backend is starting"}
 {"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"error","message":"Failed to add health record to blockchain: No \"from\" address specified in neither the given options, nor the default options."}
+{"level":"error","message":"Failed to add health record to blockchain: No \"from\" address specified in neither the given options, nor the default options."}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x7549E8f25eaeF264894F3909D1D0787C557D3ab2"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x5c722969c3fe7b4AEE467edFF2B6E8379a3c24A7"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Doctor found for address: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"doctor_address":"","inscription":"doh","level":"info","message":"Received data:","patient_address":"0x35C5F8864dE4B988432bA3beF7c26A85e7c0B238","patient_name":"doh"}
+{"level":"warn","message":"Missing required fields"}
+{"level":"info","message":"Backend is starting"}
+{"doctor_address":"","inscription":"cold","level":"info","message":"Received data:","patient_address":"0x35C5F8864dE4B988432bA3beF7c26A85e7c0B238","patient_name":"adam"}
+{"level":"warn","message":"Missing required fields"}
+{"level":"info","message":"Backend is starting"}
+{"doctor_address":"","inscription":"codf","level":"info","message":"Received data:","patient_address":"0x35C5F8864dE4B988432bA3beF7c26A85e7c0B238","patient_name":"tarik"}
+{"level":"warn","message":"Missing required fields"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"doctor_address":"0x082857f549a4f2df3b45ae024bda24bad098f4cd","inscription":"cought","level":"info","message":"Received data:","patient_address":"0x7F029577EaCC195a7c4F8b0a8f14638452bf9B48","patient_name":"ami"}
+{"level":"error","message":"Error while adding health record: MyContract.methods.isRegisteredDoctor is not a function"}
+{"level":"info","message":"Backend is starting"}
+{"doctor_address":"0x082857f549a4f2df3b45ae024bda24bad098f4cd","inscription":"sahd","level":"info","message":"Received data:","patient_address":"0x7F029577EaCC195a7c4F8b0a8f14638452bf9B48","patient_name":"tarik"}
+{"level":"error","message":"Error while adding health record: MyContract.methods.isRegisteredDoctor is not a function"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"error","message":"Error adding health record: Returned error: VM Exception while processing transaction: revert ONLY ADMIN IS ALLOWED"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Doctor found for address: 0x35C5F8864dE4B988432bA3beF7c26A85e7c0B238"}
+{"level":"error","message":"Error adding health record: Returned error: VM Exception while processing transaction: revert ONLY ADMIN IS ALLOWED"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"error","message":"Error adding health record: invalid address (argument=\"address\", value=\"0x123...\", code=INVALID_ARGUMENT, version=address/5.7.0) (argument=\"_Id\", value=\"0x123...\", code=INVALID_ARGUMENT, version=abi/5.7.0)"}
+{"level":"info","message":"Backend is starting"}
+{"level":"error","message":"Error adding health record: invalid address (argument=\"address\", value=\"0x123...\", code=INVALID_ARGUMENT, version=address/5.7.0) (argument=\"_Id\", value=\"0x123...\", code=INVALID_ARGUMENT, version=abi/5.7.0)"}
+{"level":"error","message":"Error adding health record: invalid address (argument=\"address\", value=\"0x123...\", code=INVALID_ARGUMENT, version=address/5.7.0) (argument=\"_Id\", value=\"0x123...\", code=INVALID_ARGUMENT, version=abi/5.7.0)"}
+{"level":"error","message":"Error adding health record: invalid address (argument=\"address\", value=\"0x123...\", code=INVALID_ARGUMENT, version=address/5.7.0) (argument=\"_Id\", value=\"0x123...\", code=INVALID_ARGUMENT, version=abi/5.7.0)"}
+{"level":"error","message":"Error adding health record: invalid address (argument=\"address\", value=\"0x123...\", code=INVALID_ARGUMENT, version=address/5.7.0) (argument=\"_Id\", value=\"0x123...\", code=INVALID_ARGUMENT, version=abi/5.7.0)"}
+{"level":"info","message":"Backend is starting"}
+{"level":"error","message":"Error adding health record: Returned error: VM Exception while processing transaction: revert ONLY ADMIN IS ALLOWED"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"error","message":"Error adding health record: Returned error: VM Exception while processing transaction: revert ONLY ADMIN IS ALLOWED"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Doctor found for address: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Détails du docteur récupérés : {\"0\":true,\"1\":\"0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5\",\"2\":\"amine\",\"_state\":true,\"_drId\":\"0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5\",\"_name\":\"amine\"}"}
+{"level":"info","message":"Détails du docteur récupérés : {\"0\":true,\"1\":\"0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5\",\"2\":\"mohamed\",\"_state\":true,\"_drId\":\"0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5\",\"_name\":\"mohamed\"}"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Retrieved health records for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Granting access to doctor with DID: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5, access: 1, patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Access granted transaction successful: 0x84572c03707711a955b2f6631c26d1d6f3ac49b8cb963fc1aa3afce9a998dd9b"}
+{"level":"info","message":"Retrieving health records history for patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Health records retrieved for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Retrieving health records history for patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Health records retrieved for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Retrieving health records history for patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Health records retrieved for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Retrieved health records for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Granting access to doctor with DID: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5, access: 1, patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Access granted transaction successful: 0x8b53273f647cd907a519a59907e412e48ce45234db929749326c5a31db901e10"}
+{"level":"info","message":"Retrieving health records history for patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Health records retrieved for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Retrieved health records for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieved health records for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Granting access to doctor with DID: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5, access: 1, patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Access granted transaction successful: 0xf2a84d59f96f691ed28dbbeb6b037fc558b59fdb0dc9a028a68f2b85780b43f9"}
+{"level":"info","message":"Retrieving health records history for patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Health records retrieved for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieved health records for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Retrieving health records history for patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Health records retrieved for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieved health records for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Granting access to doctor with DID: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5, access: 1, patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Granting access to doctor with DID: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5, access: 1, patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Granting access to doctor with DID: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5, access: 1, patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Access granted transaction successful: 0x81631227100b94d2470a96993dc1d965914ef5276eecf4ef44dba322106ed9e5"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Granting access to doctor with DID: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5, access: 1, patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Access granted transaction successful: 0x51512eae736210f906cec5366cf5bc68f34f24e83fc15cf281bec984f044b9e2"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Granting access to doctor with DID: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5, access: 1, patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Access granted transaction successful: 0x184e278542f0be0f0f32087bb5b48ba98315b9eddb20b1c8a9d93adbe46eadea"}
+{"level":"info","message":"Doctor id: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Retrieved health records for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Granting access to doctor with DID: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5, access: 1, patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Access granted transaction successful: 0x9cd6e1f9859cbfc6c517a6c43d7c308783b3c9c27b09fe5dff35488531608f7f"}
+{"level":"info","message":"Doctor id: 0x72d9885c524e6f96d555de6bc7E7a69EA436c4A5"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records history for patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Retrieving health records history for patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Health records retrieved for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Health records retrieved for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Retrieving health records history for patient address: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Health records retrieved for patient: 0x082857f549a4f2df3b45ae024bda24bad098f4cd"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Backend is starting"}

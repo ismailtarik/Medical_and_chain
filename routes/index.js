@@ -46,9 +46,14 @@ router.post('/patients_reg', function (req, res, next) {
 });
 
 
-// Ajouter doctor
+// Ajouter un médecin
 router.post('/setDrRecords', async (req, res) => {
   const { d_state: state, d_adrs: adrs, d_name: name, admin_adrs: admin } = req.body;
+
+  // Validation de l'adresse du médecin
+  if (!/^0x[a-fA-F0-9]{40}$/.test(adrs)) {
+    return res.status(400).json({ done: 0, message: 'Invalid doctor address' });
+  }
 
   try {
     const accList = await web3.eth.getAccounts();
@@ -59,12 +64,13 @@ router.post('/setDrRecords', async (req, res) => {
     const senderAddress = admin || accList[0];
     console.log("Using sender address:", senderAddress);
 
+    // Appel au contrat pour enregistrer les détails du médecin
     const txn = await MyContract.methods.setDoctorDetails(state, adrs, name)
       .send({ from: senderAddress, gas: 6283185 });
 
     console.log("Transaction successful:", txn.transactionHash);
 
-    // Save transaction
+    // Sauvegarde de la transaction
     const newTransaction = new Transaction({
       transactionHash: txn.transactionHash,
       from: txn.from,
@@ -73,7 +79,7 @@ router.post('/setDrRecords', async (req, res) => {
     });
     await newTransaction.save();
 
-    // Save doctor details
+    // Sauvegarde des détails du médecin dans MongoDB
     const newDoctor = new Doctor({
       state: state,
       address: adrs,
@@ -98,80 +104,132 @@ router.post('/setDrRecords', async (req, res) => {
   }
 });
 
+
 // Retrieve doctor records based on address
-router.post('/getDrRecords', (req, res) => {
+// router.post('/getDrRecords', (req, res) => {
+//   const { d_adrs: dr } = req.body;
+
+//   // Validate input
+//   if (!dr) {
+//     logger.warn("Doctor address not provided in request");  // Log missing input
+//     return res.status(400).json({ done: 0, message: 'Doctor address is required' });
+//   }
+
+//   // Search for doctor in MongoDB
+//   Doctor.findOne({ address: dr })
+//     .then(doctor => {
+//       if (doctor) {
+//         logger.info(`Doctor found for address: ${dr}`);  // Log success
+//         res.status(200).json({ done: 1, result: doctor });
+//       } else {
+//         logger.warn(`No doctor found for address: ${dr}`);  // Log not found
+//         res.status(404).json({ done: 0, message: 'Doctor not found with the given address' });
+//       }
+//     })
+//     .catch(err => {
+//       logger.error(`Error retrieving doctor record: ${err.message}`);  // Log error
+//       res.status(500).json({ done: 0, message: 'Error while retrieving doctor record', error: err.message });
+//     });
+// });
+
+// Retrieve doctor records from blockchain based on address
+router.post('/getDrRecords', async (req, res) => {
   const { d_adrs: dr } = req.body;
 
-  // Validate input
+  // Validation de l'adresse
   if (!dr) {
-    logger.warn("Doctor address not provided in request");  // Log missing input
-    return res.status(400).json({ done: 0, message: 'Doctor address is required' });
+    logger.warn("Adresse du docteur manquante dans la requête");
+    return res.status(400).json({ done: 0, message: 'L\'adresse du docteur est requise' });
   }
 
-  // Search for doctor in MongoDB
-  Doctor.findOne({ address: dr })
-    .then(doctor => {
-      if (doctor) {
-        logger.info(`Doctor found for address: ${dr}`);  // Log success
-        res.status(200).json({ done: 1, result: doctor });
-      } else {
-        logger.warn(`No doctor found for address: ${dr}`);  // Log not found
-        res.status(404).json({ done: 0, message: 'Doctor not found with the given address' });
+  try {
+    const accList = await web3.eth.getAccounts();
+    if (accList.length === 0) {
+      return res.status(400).json({ done: 0, message: 'Aucun compte trouvé dans Web3' });
+    }
+
+    // Appel à la méthode du contrat pour obtenir les détails du docteur
+    const doctorDetails = await MyContract.methods.getDoctorDetails(dr).call({ from: accList[0] });
+
+    // Log des données récupérées pour débogage
+    logger.info(`Détails du docteur récupérés : ${JSON.stringify(doctorDetails)}`);
+
+    if (doctorDetails) {
+      // Assurez-vous que le nom est bien récupéré en tant que chaîne de caractères
+      if (!doctorDetails[0]) {
+        logger.warn(`Nom du docteur vide pour l'adresse : ${dr}`);
+        return res.status(404).json({ done: 0, message: 'Nom du docteur introuvable' });
       }
-    })
-    .catch(err => {
-      logger.error(`Error retrieving doctor record: ${err.message}`);  // Log error
-      res.status(500).json({ done: 0, message: 'Error while retrieving doctor record', error: err.message });
+
+      res.status(200).json({
+        done: 1,
+        result: {
+          name: doctorDetails[0], // Nom du docteur
+          state: doctorDetails[1], // État du docteur
+          address: dr,
+        }
+      });
+    } else {
+      logger.warn(`Aucun docteur trouvé pour l'adresse : ${dr}`);
+      res.status(404).json({ done: 0, message: 'Docteur introuvable pour cette adresse' });
+    }
+  } catch (err) {
+    logger.error(`Erreur lors de la récupération du docteur : ${err.message}`);
+    res.status(500).json({
+      done: 0,
+      message: 'Erreur lors de la récupération des données du docteur depuis la blockchain',
+      error: err.message,
     });
+  }
 });
 
 
-// Ajouter des enregistrements de santé
-router.post('/setHealthRecords', (req, res) => {
-  const { patient_name, patient_address, inscription, doctor_address } = req.body;
 
-  // Effectuer la transaction sur la blockchain
-  MyContract.methods.setHealthRecordsDetails(patient_name, patient_address, inscription)
-    .send({ from: doctor_address, gas: 6283185 })
-    .then(txn => {
-      logger.info(`Adding health records to blockchain: ${txn.transactionHash}`);  // Utilisation du logger
+// Route pour ajouter un dossier médical
+router.post('/setHealthRecords', async (req, res) => {
+  const { patient_name, patient_adrs, inscription, doctor_adrs } = req.body;
 
-      // Créer un nouvel objet de transaction pour MongoDB
-      const newTransaction = new Transaction({
-        transactionHash: txn.transactionHash,
-        from: txn.from,
-        to: txn.to,
-        value: txn.value, // Adaptez cela si nécessaire en fonction de la structure de la transaction
-      });
-
-      // Enregistrer la transaction dans MongoDB
-      newTransaction.save()
-        .then(() => {
-          logger.info(`Transaction saved to MongoDB: ${txn.transactionHash}`);
-          res.json({
-            done: 1,
-            message: 'Health record added successfully to blockchain',
-            transactionHash: txn.transactionHash
-          });
-        })
-        .catch(err => {
-          logger.error(`Error saving transaction to MongoDB: ${err.message}`); // Utilisation du logger
-          res.status(500).json({
-            done: 0,
-            message: 'Failed to save transaction to MongoDB',
-            error: err.message
-          });
-        });
-    })
-    .catch(err => {
-      logger.error(`Failed to add health record to blockchain: ${err.message}`); // Utilisation du logger
-      res.status(500).json({
-        done: 0,
-        message: 'Failed to add health record to blockchain',
-        error: err.message
-      });
+  console.log(doctor_adrs);
+  // Vérifier si l'adresse du médecin est valide (longueur 42 caractères)
+  if (!doctor_adrs || doctor_adrs.length !== 42) {
+    return res.status(400).json({
+      done: 0,
+      message: 'Adresse du médecin invalide',
     });
+  }
+
+  // Vérifier que les autres informations sont bien présentes
+  if (!patient_name || !patient_adrs || !inscription) {
+    return res.status(400).json({
+      done: 0,
+      message: 'Tous les champs doivent être remplis',
+    });
+  }
+
+  try {
+    // Si l'adresse du médecin et les informations sont valides, procéder à l'ajout du dossier médical
+    const txn = await MyContract.methods.setHealthRecordsDetails(patient_name, patient_adrs, inscription)
+      .send({ from: doctor_adrs, gas: 6283185 });
+
+    console.log("Transaction réussie:", txn.transactionHash);
+
+    // Répondre avec le succès
+    res.json({
+      done: 1,
+      message: "Dossier médical ajouté et transaction sauvegardée",
+      transactionHash: txn.transactionHash,
+    });
+  } catch (err) {
+    console.error("Erreur:", err.message);
+    res.status(500).json({
+      done: 0,
+      message: 'Une erreur est survenue lors du traitement de la demande',
+      error: err.message,
+    });
+  }
 });
+
+
 
 // Retrieve health records for patients
 router.post('/getHealthRecordsForPatients', (req, res) => {
@@ -199,7 +257,7 @@ router.post('/grantAccessToDoctor', (req, res) => {
     .then(txn => {
       // Log transaction info after blockchain interaction
       logger.info(`Access granted transaction successful: ${txn.transactionHash}`);
-
+      logger.info(`Doctor id: ${did}`);
       // Create a new transaction object for MongoDB
       const newTransaction = new Transaction({
         transactionHash: txn.transactionHash,
@@ -245,6 +303,7 @@ router.post('/getHealthRecordsHistoryForPatients', (req, res) => {
 // R E T R E I V E     H E A L T H     R E C O R D S     H I S T O R Y     F O R     D O C T O R
 router.post('/getHealthRecordsHistory', function (req, res, next) {
   let data = req.body; //only use GET for query
+  
   MyContract.methods.getPatientDetails(data.pid).call({ from: data.d_adrs }).then((result1) => {
     console.log("\n\nR E T R E I V I N G     H E A L T H R E C O R D S     H I S T O R Y     F O R     P A T I E N T : " + result1._paName + "\n\n");
     console.log(result1);
@@ -285,8 +344,6 @@ router.get('/transactions', (req, res) => {
       res.status(500).json({ done: 0, message: 'Failed to retrieve transactions', error: err.message });
     });
 });
-
-
 
 
 // Middleware to generate nonce

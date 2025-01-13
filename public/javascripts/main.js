@@ -27,26 +27,36 @@ function transactions_portal(event) {
 
 
 // F U N C T I O N     T O     A D D     D O C T O R     I N F O 
-function addDoctor(event){
+function addDoctor(event) {
     event.preventDefault();
+
+    // Récupération des valeurs
     var state = document.getElementById('d_state').value;
     var adrs = document.getElementById('d_Id').value;
     var name = document.getElementById('d_Name').value;
     var a_adrs = sessionStorage.getItem('admin_adrs');
 
-    if(state.length === 0 || adrs.length === 0 || name.length === 0 ){
-        alert("ENTER CORRECT FORMAT");
+    // Vérification des champs
+    if (state.length === 0 || adrs.length === 0 || name.length === 0) {
+        alert("Please fill in all the fields.");
+        return;
     }
-    else{
-        $.post('/setDrRecords', {d_state: state, d_adrs: adrs, d_name: name, admin_adrs: a_adrs}, (data, textStatus, jqXHR) => {
-            if(data.done == 1){
-                alert(data.message);
-                window.location.href='/setDrRecords';
-            } else {
-                window.location.href='/';
-            }
-        }, 'json');
+
+    // Vérification de l'adresse (exemple pour une adresse Ethereum)
+    if (!/^0x[a-fA-F0-9]{40}$/.test(adrs)) {
+        alert("Please enter a valid Ethereum address.");
+        return;
     }
+
+    // Envoi de la requête POST
+    $.post('/setDrRecords', {d_state: state, d_adrs: adrs, d_name: name, admin_adrs: a_adrs}, (data, textStatus, jqXHR) => {
+        if (data.done == 1) {
+            alert(data.message);
+            window.location.href = '/setDrRecords';
+        } else {
+            alert(data.message);  // Affichage du message d'erreur renvoyé par le serveur
+        }
+    }, 'json');
 }
 
 
@@ -77,37 +87,43 @@ function getDoctor(event){
 
 
 
-// F U N C T I O N     T O     A D D     H E A L T H R E C O R D S     I N F O
-function addHealthRecords(event){
+function addHealthRecords(event) {
     event.preventDefault();
-    
-    // Récupérer les valeurs des champs
-    var pname = document.getElementById('patientName').value;
-    var padrs = document.getElementById('patientId').value;
-    var inscription = document.getElementById('inscription').value;
-    var d_adrs = sessionStorage.getItem('doctor_adrs');
 
-    // Validation des données
-    if(pname.length == 0 || padrs.length !== 42 || inscription == 0){
-        alert("ENTER CORRECT FORMAT");
+    // Récupérer les valeurs des champs du formulaire
+    var patient_name = document.getElementById('patientName').value;
+    var patient_adrs = document.getElementById('patientId').value;
+    var inscription = document.getElementById('inscription').value;
+    var doctor_adrs = sessionStorage.getItem('doctor_address'); // Adresse du médecin (docteur)
+    console.log("🚀 ~ addHealthRecords ~ doctor_adrs:", doctor_adrs)
+    
+    // Validation des champs
+    if (!patient_name || !patient_adrs || !inscription) {
+        alert("Veuillez remplir tous les champs.");
+        return;
     }
-    else{
-        // Envoyer les données avec les bons noms de paramètres
-        $.post('/setHealthRecords', { 
-            patient_name: pname, 
-            patient_address: padrs, 
-            inscription: inscription, 
-            doctor_address: d_adrs
-        }, (data, textStatus, jqXHR) => {
-            if(data.done == 1){
-                alert(data.message);
-                window.location.href='/addHealthRecords'; // Rediriger après succès
-            } else {
-                window.location.href='/'; // Rediriger en cas d'erreur
-            }
-        }, 'json');
+
+    if (!doctor_adrs || doctor_adrs.length !== 42) {
+        alert("L'adresse du médecin est invalide.");
+        return;
     }
+
+    // Envoi des données via POST
+    $.post('/setHealthRecords', {
+        patient_name: patient_name,
+        patient_adrs: patient_adrs,
+        inscription: inscription,
+        doctor_adrs: doctor_adrs
+    }, (data, textStatus, jqXHR) => {
+        if (data.done === 1) {
+            alert("Dossier médical ajouté avec succès.");
+            // Vous pouvez rediriger ou afficher un message de confirmation
+        } else {
+            alert(data.message || "Une erreur est survenue.");
+        }
+    }, 'json');
 }
+
 
 
 // F U N C T I O N     T O     R E T R E I V E     H E A L T H R E C O R D S     I N F O     F O R     D O C T O R S 

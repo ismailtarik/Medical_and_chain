@@ -57,15 +57,17 @@
                     const address = accounts[0];
                     console.log("User's selected address:", address);
 
-                    // Message to be signed (no nonce needed in this simplified version)
-                    const message = `Please sign this message to log in to Medichain.`;
-                    console.log("Message to be signed:", message);
+                    // Obtenez le nonce du serveur
+                    const nonceResponse = await fetch(`/get_nonce/${address}`);
+                    const { nonce } = await nonceResponse.json();
 
-                    // Request signature
+                    // Demandez la signature de l'utilisateur
                     const signature = await ethereum.request({
                         method: 'personal_sign',
-                        params: [message, address],
+                        params: [nonce, address],
                     });
+
+                    
                     console.log("Signature received:", signature);
 
                     // Send data to backend (no nonce needed)

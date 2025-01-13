@@ -47,82 +47,45 @@
         async function connectWithMetaMask() {
             if (window.ethereum) {
                 try {
-                    //specify the role 
-                    let role = "dr";
-                    // Request account access
                     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                    console.log("User's MetaMask accounts:", accounts);
-
                     const address = accounts[0];
-                    console.log("User's selected address:", address);
-
-                    // Message to be signed (no nonce needed in this simplified version)
-                    const message = `Please sign this message to log in to Medichain.`;
-                    console.log("Message to be signed:", message);
-
-                    // Request signature
+                    const role = "dr"; // Rôle pour les docteurs
+        
+                    // Obtenez le nonce du serveur
+                    const nonceResponse = await fetch(`/get_nonce/${address}`);
+                    const { nonce } = await nonceResponse.json();
+        
+                    // Demandez la signature de l'utilisateur
                     const signature = await ethereum.request({
                         method: 'personal_sign',
-                        params: [message, address],
+                        params: [nonce, address],
                     });
-                    console.log("Signature received:", signature);
-
-                    // Send data to backend (no nonce needed)
-                    $.ajax({
-                        url: '/metamask_login',
-                        type: 'POST',
-                        data: { address, signature,role }, // No nonce sent
-                        success: function (data) {
-                            console.log("Backend response:", data);
-
-                            if (data.success) {
-                                doctor_login(address)
-                                sessionStorage.setItem('userAddress', address); // Consider removing this if you're not using sessions
-                                sessionStorage.setItem('userRole', data.role);  // Consider removing this if you're not using sessions
-
-                                console.log("Redirecting to:", data.redirectUrl);
-                                window.location.href = data.redirectUrl; // Redirect based on role
-                            } else {
-                                alert('Login failed: ' + data.message);
-                                return false; // Return false if there was an error
-                            }
-                            return true; // Return false if there was an error
-                        },
-                        error: function (err) {
-                            console.error("AJAX request error:", err);
-                            alert('Login request failed. Please try again.');
-                        },
-
+        
+                    // Envoyez les données au backend
+                    const response = await fetch('/metamask_login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ address, signature, role }),
                     });
+        
+                    const data = await response.json();
+        
+                    if (data.success) {
+                        // Enregistrer l'adresse du docteur dans sessionStorage
+                        sessionStorage.setItem('doctor_address', address);
+                        window.location.href = data.redirectUrl;
+                    } else {
+                        alert(`Login failed: ${data.message}`);
+                    }
                 } catch (error) {
                     console.error("MetaMask error:", error);
                     alert('MetaMask connection failed.');
-                    return false; // Return false if there was an error
                 }
             } else {
                 alert('Please install MetaMask.');
-                return false; // Return false if there was an error
             }
         }
-
-        // F U N C T I O N     T O     L O G I N     A S     A D M I N
-        function admin_login(doctor) {
-            console.log('====================================');
-            console.log("admin log function");
-            console.log("Adrees login",doctor);
-            console.log('====================================');
-            $.post('/admin_reg', { a_adrs: admin}, (data, textStatus, jqXHR) => {
-                if (data.done == 1) {
-                    sessionStorage.clear();
-                    sessionStorage.setItem("admin_adrs", data.adrs);
-                    window.location.href = '/setDrRecords';
-                }
-                
-                else {
-                    window.location.href = '/';
-                }
-            });
-        }
+    
 
         function toggleSt() {
             document.getElementById("ed-toggle").style.backgroundColor = "#fff";
