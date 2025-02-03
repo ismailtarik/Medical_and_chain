@@ -368,3 +368,27 @@
 {"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x082857F549A4f2DF3B45ae024Bda24bad098F4cd"}
 {"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
 {"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Détails du docteur récupérés : {\"0\":true,\"1\":\"0x353FeF2259476b0f4573fEdf3376cCE710c82025\",\"2\":\"tarik\",\"_state\":true,\"_drId\":\"0x353FeF2259476b0f4573fEdf3376cCE710c82025\",\"_name\":\"tarik\"}"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Détails du docteur récupérés : {\"0\":true,\"1\":\"0x1F86baE10C8EcFF9F336DCde2496dfAE77e48F22\",\"2\":\"ahmed\",\"_state\":true,\"_drId\":\"0x1F86baE10C8EcFF9F336DCde2496dfAE77e48F22\",\"_name\":\"ahmed\"}"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x3e22895CdF2e03aE4D3D36db4AEC5957f9f19d61"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Retrieved health records for patient: 0x3e22895cdf2e03ae4d3d36db4aec5957f9f19d61"}
+{"level":"info","message":"Granting access to doctor with DID: 0x1F86baE10C8EcFF9F336DCde2496dfAE77e48F22, access: 1, patient address: 0x3e22895cdf2e03ae4d3d36db4aec5957f9f19d61"}
+{"level":"info","message":"Access granted transaction successful: 0x71f960d9145dcaa2703c2c6e3f73ea1f6743abaeddd493d9538bd7ab4327d497"}
+{"level":"info","message":"Doctor id: 0x1F86baE10C8EcFF9F336DCde2496dfAE77e48F22"}
+{"level":"info","message":"Retrieving health records history for patient address: 0x3e22895cdf2e03ae4d3d36db4aec5957f9f19d61"}
+{"level":"info","message":"Health records retrieved for patient: 0x3e22895cdf2e03ae4d3d36db4aec5957f9f19d61"}
+{"level":"info","message":"Retrieving health records for doctor with address: , patient ID: 0x3e22895CdF2e03aE4D3D36db4AEC5957f9f19d61"}
+{"level":"error","message":"Access denied or error retrieving health records: Returned error: VM Exception while processing transaction: revert REGISTERED DOCTORS ONLY"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"Backend is starting"}
+{"level":"info","message":"✅ Backend is starting"}
+{"level":"info","message":"✅ Backend is starting"}
+{"level":"error","message":"Erreur lors de la récupération du docteur : web3 is not defined"}

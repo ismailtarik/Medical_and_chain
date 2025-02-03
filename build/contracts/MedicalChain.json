@@ -113,8 +113,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -199,8 +198,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -244,8 +242,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -307,8 +304,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.0+commit.c7dfd78e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"admin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"doctor\",\"type\":\"address\"}],\"name\":\"DrDetailsAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"dr\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"patient\",\"type\":\"address\"}],\"name\":\"GrantAccessToDr\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"dr\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"patient\",\"type\":\"address\"}],\"name\":\"HealthRecordsAdded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_Id\",\"type\":\"address\"}],\"name\":\"getDoctorDetails\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"_state\",\"type\":\"bool\"},{\"internalType\":\"address\",\"name\":\"_drId\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_dr\",\"type\":\"address\"}],\"name\":\"getHealthRecords\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"_drName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_drId\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_paName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_paId\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_prescription\",\"type\":\"string\"},{\"internalType\":\"string[]\",\"name\":\"_rec\",\"type\":\"string[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_paId\",\"type\":\"address\"}],\"name\":\"getHealthRecordsForDoctor\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"_drName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_drId\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_paName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_pId\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_prescription\",\"type\":\"string\"},{\"internalType\":\"string[]\",\"name\":\"_rec\",\"type\":\"string[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_Id\",\"type\":\"address\"}],\"name\":\"getPatientDetails\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"_state\",\"type\":\"bool\"},{\"internalType\":\"address\",\"name\":\"_paId\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_paName\",\"type\":\"string\"},{\"internalType\":\"string[]\",\"name\":\"_paRecords\",\"type\":\"string[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"doctor_id\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"access\",\"type\":\"uint256\"}],\"name\":\"grantAccessToDoctor\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bool\",\"name\":\"_state\",\"type\":\"bool\"},{\"internalType\":\"address\",\"name\":\"_drId\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"}],\"name\":\"setDoctorDetails\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_paName\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_paId\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_prescription\",\"type\":\"string\"}],\"name\":\"setHealthRecordsDetails\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bool\",\"name\":\"_state\",\"type\":\"bool\"},{\"internalType\":\"address\",\"name\":\"_paId\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_paName\",\"type\":\"string\"},{\"internalType\":\"string[]\",\"name\":\"_paRecords\",\"type\":\"string[]\"}],\"name\":\"setPatientDetails\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/MedicalChain.sol\":\"MedicalChain\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/MedicalChain.sol\":{\"keccak256\":\"0x09a794729347b4cc4b00257d24ff03f6bfd3a3b52382a32d859599ecd5f54571\",\"urls\":[\"bzz-raw://7dce4914abbb6b6222a8824242e176af2639825b9e56a1f82d3e4fe97641103a\",\"dweb:/ipfs/QmUduqYQbV1up7pAnu4ofDqiZT3GVYwKno9NHcY7QxTTnk\"]}},\"version\":1}",
@@ -17716,13 +17712,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x5F69b3fbd7954323208fc11A8Eae3cC83625f2Ee",
-      "transactionHash": "0x400137ed3fcf3e3a4f2be529fc057216cb48b7f4314cb465d0e7b3f99ecaad55"
+      "address": "0x12eF1F41889b2afa83ab62b663CfC14551C97757",
+      "transactionHash": "0x5a26af871bcd43d965a6c3c72277b209cc5cc89becfecac2d65a25bb31b0cec6"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-01-12T18:34:39.967Z",
-  "networkType": "ethereum",
+  "updatedAt": "2025-02-03T17:08:56.893Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
